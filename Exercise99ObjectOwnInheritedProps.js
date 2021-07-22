@@ -28,6 +28,22 @@ function printObjectProperties(objParam) {
     return tempArray;
 }
 
+function printObjectValues(objParam) {
+    let tempArray = [];
+    if(!isObject(objParam)) {
+        console.log("Object is not an object. Exiting");
+        return false;
+    } else {
+        keysArray = printObjectProperties(objParam);
+        for(let i = 0; i < keysArray.length; i ++) {
+            tempArray.push(objParam[keysArray[i]]);
+        }
+    }
+
+    return tempArray;
+}
+
 const myCircle = new circle(15);
 myCircle.test = true;
 console.log(printObjectProperties(myCircle));
+console.log(printObjectValues(myCircle));
