@@ -8,42 +8,57 @@ region by extracting the largest element and moving that to the sorted region. T
  it has the advantage of a more favorable worst-case O(n log n) runtime. Heapsort is an in-place algorithm, 
  but it is not a stable sort.*/
 
- var arrayLength;
-
 function swapPositions(arrayParam, firstIndex, swapIndex) {
-    let temp = arrayParam[firstIndex];
+    const temp = arrayParam[firstIndex];
     arrayParam[firstIndex] = arrayParam[swapIndex];
     arrayParam[swapIndex] = temp;
 }
 
-function heapSortHelper(arrayParam, index) {
-    var leftIndex = (index * 2) + 1;
-    var rightIndex = (index * 2) + 2;
-    var rootMax = index;
+function heapSortHelper(arrayParam, arrayMid, arraySize) {
+    let index;
+    let leftChild;
+    let rightChild;
 
-    if(leftIndex < arrayLength && arrayParam[leftIndex] > arrayParam[rootMax]) {
-        rootMax = leftIndex;
-    } else if (rightIndex < arrayLength && arrayParam[rightIndex] > arrayParam[rootMax]) {
-        rootMax = rightIndex;
-    }
+    while(arrayMid < arraySize) {
+        index = arrayMid;
+        leftChild = 2 * arrayMid + 1; //Formula to find the child of the nodes when index = i 
+        rightChild = 2 * arrayMid + 2;
 
-    if(rootMax != index) {
-        swapPositions(arrayParam, index, rootMax);
-        heapSortHelper(arrayParam, rootMax);
+        if (leftChild < arraySize && arrayParam[leftChild] > arrayParam[index]) {
+            index = leftChild;
+        }
+        if (rightChild < arraySize && arrayParam[rightChild] > arrayParam[index]) {
+            index = rightChild;
+        }
+
+        if (index == arrayMid) {
+            return;
+        }
+
+        swapPositions(arrayParam, index, arrayMid);
+        arrayMid = index;
+
     }
 }
 
 function heapSort(arrayParam) {
-    arrayLength = arrayParam.length;
-    
-    for(let i = Math.floor(arrayLength/2); i >= 0; i --) {
-        heapSortHelper(arrayParam, i);
+    if(!arrayParam.length) {
+        console.log("Array passed is empty or undefined, exiting function.");
+        return false;
     }
 
-    for(let i = arrayParam.length - 1; i > 0; i --) {
-        swapPositions(arrayParam, 0, i);
-        arrayLength --;
-        heapSortHelper(arrayParam, 0)
+    let arrayMid = Math.floor(arrayParam.length/2 - 1); //Middle of the array length
+
+    while(arrayMid >= 0) {
+        heapSortHelper(arrayParam, arrayMid, arrayParam.length);
+        arrayMid --;
+    }
+
+    let lastElement = arrayParam.length - 1;
+    while(lastElement > 0) {
+        swapPositions(arrayParam, 0, lastElement);
+        heapSortHelper(arrayParam, 0, lastElement);
+        lastElement --;
     }
     
     return arrayParam;
