@@ -197,6 +197,39 @@ BinarySearchTree.prototype.delete = function(nodeVal) {
     return true;
 }
 
+
+// BinarySearchTree.prototype.inOrderTraversalPrint = function(nodeParam) {
+//     if(nodeParam) {
+//         console.log(nodeParam.value);
+//         this.inOrderTraversalPrint(nodeParam.left);
+//         this.inOrderTraversalPrint(nodeParam.right);
+//     }
+// }
+
+BinarySearchTree.prototype.breadthFirstTraversal = function() {
+    var result = [];
+    var currentNode = this.root;
+    var queue = [currentNode];
+    while(currentNode = queue.shift()) {
+        result.push(currentNode.value);
+        currentNode.left && queue.push(currentNode.left);
+        currentNode.right && queue.push(currentNode.right);
+    }
+    return result;
+}
+
+BinarySearchTree.prototype.inOrderTraversalPrint = function() {
+    var result = []; //Create the array in which we will be saving our values
+    var currentNode = this.root;
+    var traverseTree = function(nodeParam) {
+        nodeParam.left && traverseTree(nodeParam.left);
+        result.push(nodeParam.value);
+        nodeParam.right && traverseTree(nodeParam.right);
+    }
+    traverseTree(currentNode);
+    return result;
+}
+
 //Testing the code
 var bst = new BinarySearchTree();
 bst.insert(20);
@@ -209,6 +242,11 @@ bst.insert(14);
 bst.insert(23);
 bst.insert(13);
 bst.insert(15);
+
+//Testing of inOrderTraversalPrint
+console.log(bst.inOrderTraversalPrint())
+console.log(bst.breadthFirstTraversal());
+// bst.inOrderTraversalPrint(bst.root);
 
 //Test Delete of a node in tree that has no leaves
 // console.log(bst.delete(14));
@@ -233,10 +271,10 @@ bst.insert(15);
 // console.log(bst.root);
 
 //Test 3 of deleting a node in tree that has 2 leaves (deeper)
-console.log(bst.delete(12));
-console.log(bst.getNodeByVal(12));
-console.log(bst.getNodeByVal(13));
-console.log(bst.root);
+// console.log(bst.delete(12));
+// console.log(bst.getNodeByVal(12));
+// console.log(bst.getNodeByVal(13));
+// console.log(bst.root);
 
 //Testing of finding IOS 
 // var test = bst.getNodeByVal(9);
