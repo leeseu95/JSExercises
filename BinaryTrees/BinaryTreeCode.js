@@ -230,6 +230,30 @@ BinarySearchTree.prototype.inOrderTraversalPrint = function() {
     return result;
 }
 
+BinarySearchTree.prototype.postOrderTraversalPrint = function() {
+    var result = []; //Create array in which we will be saving our values
+    var currentNode = this.root; //Start in our root
+    var traverseTree = function(nodeParam) {
+        nodeParam.left && traverseTree(nodeParam.left);
+        nodeParam.right && traverseTree(nodeParam.right);
+        result.push(nodeParam.value);
+    }
+    traverseTree(currentNode);
+    return result;
+}
+
+BinarySearchTree.prototype.preOrderTraversalPrint = function() {
+    var result = [];
+    var currentNode = this.root; //Same logic as post/inorder traversal
+    var traverseTree = function(nodeParam) {
+        result.push(nodeParam.value);
+        nodeParam.left && traverseTree(nodeParam.left);
+        nodeParam.right && traverseTree(nodeParam.right);
+    }
+    traverseTree(currentNode);
+    return result;
+}
+
 //Testing the code
 var bst = new BinarySearchTree();
 bst.insert(20);
@@ -244,9 +268,10 @@ bst.insert(13);
 bst.insert(15);
 
 //Testing of inOrderTraversalPrint
-console.log(bst.inOrderTraversalPrint())
-console.log(bst.breadthFirstTraversal());
-// bst.inOrderTraversalPrint(bst.root);
+// console.log(bst.inOrderTraversalPrint())
+// console.log(bst.breadthFirstTraversal());
+// console.log(bst.postOrderTraversalPrint());
+console.log(bst.preOrderTraversalPrint());
 
 //Test Delete of a node in tree that has no leaves
 // console.log(bst.delete(14));
