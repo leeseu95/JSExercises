@@ -255,6 +255,7 @@ BinarySearchTree.prototype.preOrderTraversalPrint = function() {
 }
 
 //Testing the code
+//Build our tree and insert the values needed
 var bst = new BinarySearchTree();
 bst.insert(20);
 bst.insert(9);
@@ -267,11 +268,11 @@ bst.insert(23);
 bst.insert(13);
 bst.insert(15);
 
-//Testing of inOrderTraversalPrint
+//Testing of traversal prints
 // console.log(bst.inOrderTraversalPrint())
 // console.log(bst.breadthFirstTraversal());
 // console.log(bst.postOrderTraversalPrint());
-console.log(bst.preOrderTraversalPrint());
+// console.log(bst.preOrderTraversalPrint());
 
 //Test Delete of a node in tree that has no leaves
 // console.log(bst.delete(14));
