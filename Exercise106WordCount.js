@@ -18,7 +18,7 @@ function wordCount(stringParam) {
 
     for(let i = 0; i < stringParam.length; i ++) {
         if(stringParam[i] == '') {
-            console.log("a");
+            // console.log("a");
             continue;
         } else {
             stringTemp.push(stringParam[i]);
