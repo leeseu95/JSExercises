@@ -74,4 +74,12 @@ function solution(A) {
     return countriesNumber;
 }
 
+// let arrayTest = [[0, 0], [1, 1]];
+// var coordinates = [1, 1];
+// console.log(arrayTest);
+// var itemAsString = JSON.stringify(arrayTest);
+// console.log(itemAsString);
+// var coordinatesAsString = JSON.stringify(coordinates);
+// console.log(itemAsString.includes(coordinatesAsString));
+
 console.log(solution([[5, 4, 4], [4, 3, 4], [3, 2, 4], [2, 2, 2], [3, 3, 4], [1, 4, 4], [4, 1, 1]]))
