@@ -7,14 +7,14 @@ console.log(base_convert(1000,2,8));
 "10"*/
 
 
-function base_convert(num, initialBase, changeBase) {
-    if(initialBase < 2 || initialBase > 36 || changeBase < 2 || changeBase > 36) {
+function base_convert(num, initialBase, Base) {
+    if(initialBase < 2 || initialBase > 36 || Base < 2 || Base > 36) {
         console.log("One of the bases is too big or small, exiting function");
         return;
     }
 
     num = parseInt(num, initialBase);
-    return num.toString(changeBase);
+    return num.toString(Base);
 }
 
 console.log(base_convert('E164', 16, 8));

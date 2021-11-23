@@ -218,6 +218,24 @@ BinarySearchTree.prototype.breadthFirstTraversal = function() {
     return result;
 }
 
+BinarySearchTree.prototype.BFS = function() {
+    var result = [];
+    var currentNode = this.root;
+    var queue = [currentNode];
+    while(queue.length != 0) {
+        currentNode = queue.shift();
+        result.push(currentNode.value);
+
+        if(currentNode.left != null) {
+            queue.push(currentNode.left);
+        }
+        if(currentNode.right != null) {
+            queue.push(currentNode.right);
+        }
+    }
+    return result;
+}
+
 BinarySearchTree.prototype.inOrderTraversalPrint = function() {
     var result = []; //Create the array in which we will be saving our values
     var currentNode = this.root;
@@ -270,7 +288,8 @@ bst.insert(15);
 
 //Testing of traversal prints
 // console.log(bst.inOrderTraversalPrint())
-// console.log(bst.breadthFirstTraversal());
+console.log(bst.breadthFirstTraversal());
+console.log(bst.BFS());
 // console.log(bst.postOrderTraversalPrint());
 // console.log(bst.preOrderTraversalPrint());
 
